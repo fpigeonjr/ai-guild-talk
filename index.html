@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shipping with AI Skills — Flexion AI Guild</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --panel: #171a23;
+    --ink: #e8eaed;
+    --muted: #9aa3b2;
+    --accent: #6ea8fe;
+    --accent2: #8ce99a;
+    --warn: #ffd43b;
+    --code-bg: #0b0d12;
+    --border: #262b38;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    overflow: hidden;
+  }
+
+  .deck { height: 100vh; width: 100vw; position: relative; }
+
+  .slide {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5vh 8vw;
+    animation: fade .35s ease;
+  }
+  .slide.active { display: flex; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    font-size: .8rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+  }
+  h1 { font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.05; font-weight: 800; letter-spacing: -.02em; }
+  h2 { font-size: clamp(1.8rem, 3.6vw, 3rem); line-height: 1.1; font-weight: 750; letter-spacing: -.015em; margin-bottom: 1.5rem; }
+  h1 .grad, h2 .grad {
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .subtitle { font-size: clamp(1.1rem, 2vw, 1.6rem); color: var(--muted); margin-top: 1.5rem; max-width: 40ch; }
+  p.lead { font-size: clamp(1.15rem, 2vw, 1.7rem); line-height: 1.5; max-width: 34ch; }
+  ul { list-style: none; margin-top: 1rem; }
+  li { font-size: clamp(1.05rem, 1.8vw, 1.5rem); line-height: 1.6; margin: .75rem 0; padding-left: 1.6rem; position: relative; color: var(--ink); }
+  li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); }
+  li .muted { color: var(--muted); }
+
+  .meta { color: var(--muted); font-size: .95rem; margin-top: 3rem; line-height: 1.8; }
+
+  .anatomy { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin-top: 2rem; max-width: 60vw; }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 1.4rem 1.6rem; }
+  .card .tag { font-family: var(--mono); font-size: .8rem; color: var(--accent); text-transform: uppercase; letter-spacing: .1em; }
+  .card .what { font-size: 1.3rem; font-weight: 700; margin: .4rem 0; }
+  .card .desc { color: var(--muted); font-size: .98rem; line-height: 1.45; }
+
+  .demo-badge { display: inline-block; font-family: var(--mono); font-size: .85rem; padding: .3rem .8rem; border-radius: 999px; font-weight: 600; margin-bottom: 1rem; }
+  .badge-deep { background: rgba(110,168,254,.15); color: var(--accent); border: 1px solid rgba(110,168,254,.4); }
+  .badge-gen  { background: rgba(140,233,154,.15); color: var(--accent2); border: 1px solid rgba(140,233,154,.4); }
+  .badge-ceil { background: rgba(255,212,59,.15); color: var(--warn); border: 1px solid rgba(255,212,59,.4); }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 3vw; align-items: center; }
+  .split .text li { font-size: clamp(1rem, 1.6vw, 1.35rem); }
+
+  /* Gif / media placeholder */
+  .media {
+    border: 2px dashed var(--border);
+    border-radius: 16px;
+    background: repeating-linear-gradient(45deg, #12151d, #12151d 12px, #141822 12px, #141822 24px);
+    min-height: 42vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 2rem; color: var(--muted);
+  }
+  .media .icon { font-size: 2.5rem; margin-bottom: .8rem; }
+  .media .label { font-family: var(--mono); font-size: .95rem; color: var(--warn); font-weight: 600; }
+  .media .hint { font-size: .9rem; margin-top: .6rem; max-width: 34ch; line-height: 1.5; }
+  .media img { max-width: 100%; max-height: 60vh; border-radius: 12px; }
+
+  code, pre { font-family: var(--mono); }
+  pre {
+    background: var(--code-bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.4rem 1.6rem; font-size: clamp(.8rem, 1.1vw, 1rem); line-height: 1.6;
+    overflow: auto; max-height: 62vh;
+  }
+  pre .k { color: var(--accent); }
+  pre .s { color: var(--accent2); }
+  pre .c { color: var(--muted); font-style: italic; }
+  code.inline { background: var(--code-bg); border: 1px solid var(--border); padding: .1rem .45rem; border-radius: 6px; font-size: .92em; color: var(--accent2); }
+
+  .quote { font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 700; line-height: 1.25; max-width: 22ch; }
+  .quote .strike { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--warn); }
+  .cta { font-family: var(--mono); background: var(--panel); border-left: 4px solid var(--accent2); padding: 1.4rem 1.8rem; border-radius: 0 12px 12px 0; margin-top: 2rem; font-size: clamp(1rem, 1.6vw, 1.4rem); line-height: 1.6; max-width: 44ch; }
+  .kicker { font-size: clamp(1.6rem, 3.5vw, 3rem); font-weight: 800; margin-top: 1.5rem; }
+
+  /* Chrome */
+  .progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width .3s ease; z-index: 50; }
+  .counter { position: fixed; bottom: 1.4rem; right: 1.8rem; font-family: var(--mono); font-size: .85rem; color: var(--muted); z-index: 50; }
+  .navhint { position: fixed; bottom: 1.4rem; left: 1.8rem; font-family: var(--mono); font-size: .8rem; color: var(--border); z-index: 50; }
+  .footer-brand { position: fixed; top: 1.2rem; right: 1.8rem; font-size: .8rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; z-index: 50; }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="footer-brand">Flexion AI Guild</div>
+<div class="deck" id="deck">
+
+  <!-- 1. OPEN -->
+  <section class="slide active">
+    <div class="eyebrow">Flexion AI Guild · July 23</div>
+    <h1>Shipping with<br><span class="grad">AI Skills</span></h1>
+    <p class="subtitle">Two weeks after I built a workflow for myself, teammates asked to install it in their own setup.</p>
+    <p class="subtitle" style="color:var(--ink);font-weight:600;">I'll show you why — and by the end, how you'd build your own.</p>
+    <div class="meta">Fred Pigeon · requested by Michael Getz · booked by Matt</div>
+  </section>
+
+  <!-- 2. WHAT A SKILL IS -->
+  <section class="slide">
+    <div class="eyebrow">The one idea to remember</div>
+    <h2>What <span class="grad">is</span> a skill?</h2>
+    <p class="lead">A reusable instruction file that teaches your agent
+      <strong style="color:var(--accent)">how</strong> to do a task the way <em>you'd</em> want it done —
+      and <strong style="color:var(--accent2)">when</strong> to reach for it.</p>
+    <ul style="margin-top:2rem">
+      <li><span class="muted">Not a one-off prompt.</span> A file you keep, share, and reuse.</li>
+      <li>The <strong style="color:var(--accent)">how</strong> = instructions, format, guardrails.</li>
+      <li>The <strong style="color:var(--accent2)">when</strong> = the description your agent reads to decide to use it.</li>
+    </ul>
+  </section>
+
+  <!-- 3. ANATOMY -->
+  <section class="slide">
+    <div class="eyebrow">Under the hood</div>
+    <h2>A skill is just a <span class="grad">Markdown file</span></h2>
+    <p class="lead" style="max-width:48ch">Four parts. That's the whole anatomy — remember these and you can read (or write) any skill.</p>
+    <div class="anatomy">
+      <div class="card"><div class="tag">WHEN</div><div class="what">Description</div><div class="desc">The one thing the agent sees to decide <em>whether to reach for this skill.</em></div></div>
+      <div class="card"><div class="tag">HOW</div><div class="what">Instructions</div><div class="desc">The step-by-step of how you'd do the task yourself.</div></div>
+      <div class="card"><div class="tag">SHAPE</div><div class="what">Format</div><div class="desc">What the output should look like when it's done.</div></div>
+      <div class="card"><div class="tag">SAFETY</div><div class="what">Guardrails</div><div class="desc">The rules that keep it from going off the rails.</div></div>
+    </div>
+  </section>
+
+  <!-- 4. DEMO 1 INTRO -->
+  <section class="slide">
+    <div class="demo-badge badge-deep">DEMO 1 · the deep one</div>
+    <h2>The skill my teammates <span class="grad">stole</span></h2>
+    <p class="lead"><code class="inline">submit-pr-review</code> — turns a diff into a PR review request, drafted the way I'd write it.</p>
+    <ul style="margin-top:1.5rem">
+      <li>Started as: <span class="muted">"what if my AI wrote review requests the way I do?"</span></li>
+      <li>Two weeks later: devs asked to set it up in their own harness.</li>
+      <li>The output isn't <em>perfect</em> — it's <strong>ready to edit and send.</strong></li>
+    </ul>
+  </section>
+
+  <!-- 5. DEMO 1 GIF -->
+  <section class="slide">
+    <div class="demo-badge badge-deep">DEMO 1 · live flow</div>
+    <div class="media">
+      <div class="icon">🎬</div>
+      <div class="label">GIF-01 &nbsp;·&nbsp; assets/demo-pr-review.gif</div>
+      <div class="hint">Record: a diff on screen → run the skill → a formatted PR review request appears, ready to copy-paste. ~15–20s loop.</div>
+    </div>
+  </section>
+
+  <!-- 6. DEMO 1 CODE -->
+  <section class="slide">
+    <div class="demo-badge badge-deep">DEMO 1 · the actual file</div>
+    <h2 style="margin-bottom:1rem">Four parts, in the wild</h2>
+    <pre><span class="c">---</span>
+<span class="k">name:</span> submit-pr-review
+<span class="k">description:</span> <span class="s">Turns a code review into an approved GitHub</span>
+  <span class="s">PR review and submits it only after human approval.</span>   <span class="c"># ← WHEN</span>
+  <span class="s">Use when the user wants to post or submit a review...</span>
+<span class="k">allowed-tools:</span> Read Grep Glob Bash                          <span class="c"># ← GUARDRAIL</span>
+<span class="c">---</span>
+
+<span class="c"># Submit PR Review</span>                                        <span class="c"># ← HOW (instructions)</span>
+Identify the PR. Run the review. Turn findings into a
+draft. <span class="s">Do not post anything until the human approves</span>      <span class="c"># ← GUARDRAIL</span>
+<span class="s">the exact review body.</span>
+
+<span class="c">## Write the Review</span>                                       <span class="c"># ← FORMAT</span>
+1. Must fix before merge
+2. Should verify before merge
+3. Suggestions and notes</pre>
+  </section>
+
+  <!-- 7. DEMO 2 INTRO -->
+  <section class="slide">
+    <div class="demo-badge badge-gen">DEMO 2 · same skeleton, zero code</div>
+    <h2>This one has <span class="grad">nothing</span> to do with code</h2>
+    <p class="lead"><code class="inline">grill-me</code> — interviews you about a plan until it's sharp. Same four parts. No diff, no repo.</p>
+    <div class="cta" style="border-left-color:var(--accent2)">Fun fact: <strong>this talk</strong> was grilled into shape by this exact skill.<br>Every branch you're about to see — it made me resolve, one at a time.</div>
+  </section>
+
+  <!-- 8. DEMO 2 GIF -->
+  <section class="slide">
+    <div class="demo-badge badge-gen">DEMO 2 · live or gif</div>
+    <div class="media">
+      <div class="icon">🎬</div>
+      <div class="label">GIF-02 &nbsp;·&nbsp; assets/demo-grill-me.gif</div>
+      <div class="hint">Record: a fuzzy plan → the skill asks one sharp question at a time → the plan gets tighter. Show a PM/design-flavored plan so non-devs see themselves. ~15s. (Optional: attempt live if wifi + room energy cooperate.)</div>
+    </div>
+  </section>
+
+  <!-- 9. DEMO 3 INTRO -->
+  <section class="slide">
+    <div class="demo-badge badge-ceil">DEMO 3 · the ceiling</div>
+    <h2>How far does this <span class="grad">go?</span></h2>
+    <p class="lead"><code class="inline">teach</code> — a stateful skill that generates whole HTML lessons, cheat sheets, and a learning plan.</p>
+    <ul style="margin-top:1.5rem">
+      <li>Not single-shot — it's a <strong>persistent system</strong> across sessions.</li>
+      <li>The point: skills scale <em>way</em> up… <span class="muted">but you don't start here.</span></li>
+    </ul>
+  </section>
+
+  <!-- 10. DEMO 3 LIVE SITE -->
+  <section class="slide">
+    <div class="demo-badge badge-ceil">DEMO 3 · real output</div>
+    <div class="media">
+      <div class="icon">🌐</div>
+      <div class="label">LIVE &nbsp;·&nbsp; open your GitHub Pages site here</div>
+      <div class="hint">Switch to a browser tab with one of your existing GitHub Pages lessons. Real artifact — no gif needed. Drop the URL(s) in TALK-NOTES.md so you have them ready.</div>
+    </div>
+  </section>
+
+  <!-- 11. ON-RAMP: write-a-skill -->
+  <section class="slide">
+    <div class="eyebrow">The on-ramp</div>
+    <h2>You don't even write it <span class="grad">by hand</span></h2>
+    <p class="lead"><code class="inline">write-a-skill</code> — a skill whose whole job is interviewing you and writing the skill <em>for</em> you.</p>
+    <p class="lead" style="margin-top:1.5rem;color:var(--warn)">So the barrier isn't skill.<br>It's picking the <strong>one task.</strong></p>
+  </section>
+
+  <!-- 12. CLOSE: friction not time -->
+  <section class="slide">
+    <div class="eyebrow">What actually changed</div>
+    <p class="quote">None of these made me <span class="strike">faster.</span></p>
+    <p class="kicker">They removed the <span class="grad">friction</span> that stopped me from doing the thing at all.</p>
+  </section>
+
+  <!-- 13. CLOSE: CTA -->
+  <section class="slide">
+    <div class="eyebrow">Try it once</div>
+    <h2>Your Monday <span class="grad">assignment</span></h2>
+    <div class="cta">
+      Pick one thing you retype every week.<br>
+      Write down how you'd tell a new hire to do it.<br>
+      Save it as a <code class="inline">.md</code> file.<br>
+      <strong style="color:var(--accent2)">That's a skill.</strong>
+    </div>
+    <p class="lead" style="margin-top:2rem;font-weight:700">The repo link is in the chat. Try it once. That's all it takes.</p>
+  </section>
+
+  <!-- 14. Q&A -->
+  <section class="slide">
+    <h1>Questions?</h1>
+    <p class="subtitle">Repo: <code class="inline">iae-sam-engineering-practices</code> · PR #22</p>
+  </section>
+
+</div>
+
+<div class="counter" id="counter">1 / 14</div>
+<div class="navhint">← → space · f fullscreen · o overview</div>
+
+<script>
+  const slides = [...document.querySelectorAll('.slide')];
+  let i = 0;
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    counter.textContent = `${i + 1} / ${slides.length}`;
+    progress.style.width = `${((i + 1) / slides.length) * 100}%`;
+    location.hash = i + 1;
+  }
+  function next() { show(i + 1); }
+  function prev() { show(i - 1); }
+
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight', ' ', 'PageDown'].includes(e.key)) { e.preventDefault(); next(); }
+    else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); prev(); }
+    else if (e.key === 'Home') show(0);
+    else if (e.key === 'End') show(slides.length - 1);
+    else if (e.key.toLowerCase() === 'f') { if (!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); }
+  });
+  document.addEventListener('click', e => { if (e.clientX > window.innerWidth * 0.5) next(); else prev(); });
+
+  const start = parseInt(location.hash.replace('#', '')) || 1;
+  show(start - 1);
+</script>
+</body>
+</html>
