@@ -80,6 +80,17 @@ Q&A slide where people are writing things down. Lineage credited there:
 Pocock's repo** (built on it) → this talk's skills (inspired by Matt). Anthropic is the
 root “spec,” though it's a format + conventions, not a formal standard.
 
+## The format spec link (slide 3)
+
+Slide 3 links to **agentskills.io/specification** — a formal, standalone spec for the
+`SKILL.md` format (frontmatter `name`, `description`, `license`, `compatibility`,
+`metadata`, `allowed-tools`; `scripts/references/assets/` dirs; progressive disclosure).
+It is **not** Anthropic's own docs and carries no explicit affiliation statement, so it's
+labeled neutrally — “The format spec: Agent Skills · agentskills.io” — not “the Anthropic
+spec.” It's richer than Anthropic's overview and validates slide 3 better (`allowed-tools`
+is a named field there). On the Q&A slide: agentskills.io = the full spec, Anthropic docs
+= where the format came from. Say it that way on stage to stay accurate.
+
 ## Emotional arc
 
 - **Open:** social proof + promise ("teammates adopted it in two weeks; by the end
