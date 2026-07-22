@@ -61,6 +61,14 @@ make them your own* — is the direct inspiration for this repo and reinforces t
 north star (the Monday CTA is literally "make one your own"). Keep it on slide 1 only,
 not the definition slide, so it credits without derailing the teaching flow.
 
+## References — on the Q&A slide, not slide 2
+
+Slide 2 (the definition) stays a single crisp idea — no links. References live on the
+Q&A slide where people are writing things down. Lineage credited there:
+**Anthropic Agent Skills** (the `SKILL.md` format spec, built for Claude Code) → **Matt
+Pocock's repo** (built on it) → this talk's skills (inspired by Matt). Anthropic is the
+root “spec,” though it's a format + conventions, not a formal standard.
+
 ## Emotional arc
 
 - **Open:** social proof + promise ("teammates adopted it in two weeks; by the end
