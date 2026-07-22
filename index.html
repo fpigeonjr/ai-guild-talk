@@ -66,6 +66,8 @@
   .homage a { color: var(--accent); text-decoration: none; font-weight: 600; }
   .homage a:hover { text-decoration: underline; }
   .homage .muted { color: var(--muted); font-style: italic; }
+  .speclink { color: var(--accent); text-decoration: none; font-weight: 600; border-bottom: 1px solid rgba(110,168,254,.4); padding-bottom: 1px; }
+  .speclink:hover { border-bottom-color: var(--accent); }
 
   .anatomy { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin-top: 2rem; max-width: 60vw; }
   .card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 1.4rem 1.6rem; }
@@ -162,6 +164,7 @@
       <div class="card"><div class="tag">SAFETY</div><div class="what">Guardrails</div><div class="desc">The rules that keep it from going off the rails.</div></div>
     </div>
     <p style="margin-top:1.4rem;font-size:.95rem;color:var(--muted);max-width:60ch"><code class="inline">description</code> + <code class="inline">instructions</code> are the spec. <strong style="color:var(--ink)">Format</strong> &amp; <strong style="color:var(--ink)">guardrails</strong> are conventions that make skills reliable.</p>
+    <p style="margin-top:.9rem;font-size:.95rem"><a class="speclink" href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview#skill-structure" target="_blank" rel="noopener">→ The actual spec: Anthropic Agent Skills · Skill structure</a></p>
   </section>
 
   <!-- 4. DEMO 1 INTRO -->
