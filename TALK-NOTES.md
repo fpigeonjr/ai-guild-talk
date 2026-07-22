@@ -160,7 +160,13 @@ Fallback if grilling stalls: talk through the branches from the stashed #2 spec.
 ## TODO before the talk
 
 - [ ] **Run `submit-pr-review` cold against PR #8 in the real harness** (de-risk the live demo)
-- [ ] Record `assets/demo-grill-me.gif` (use a PM/design-flavored plan)
-- [ ] GitHub Pages URLs for Demo 3: ________________________________________
+- [ ] Dry-run the Demo 2 chain (`grill-me` → `to-issues`) once cold to gauge timing
+- [x] GitHub Pages URLs for Demo 3 (verified 200):
+  - Site: https://fpigeonjr.github.io/learning-pocock-skills/
+  - lessons/0001-thesis-and-four-failure-modes.html
+  - lessons/0002-engineering-flow-end-to-end.html
+  - lessons/0003-invocation-model.html
+  - Built with the `teach` skill; sources in the workspace RESOURCES.md. Closes the slide-1
+    Pocock loop (a skill, about skills, teaching from the repo the talk opens on).
 - [ ] Confirm repo link for the chat (real internal repo/PR — see PRIVATE-NOTES.md, git-ignored)
 - [ ] Verify the real `submit-pr-review` description text matches slide 6
