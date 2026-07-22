@@ -120,13 +120,27 @@ Close line: **"The repo link is in the chat. Try it once. That's all it takes."*
 Default to pre-recorded gifs — a stalled live LLM demo undercuts the "confidence"
 message. Treat any live demo (Demo 2) as an optional bonus if wifi + room energy allow.
 
+**Exception — Demo 1 is now LIVE (slide 5).** We run `submit-pr-review` against a real PR
+on stage: `github.com/fpigeonjr/ai-guild-talk` PR #8. The PR has three seeded flaws
+(no `localStorage` persistence = unmet AC → blocking; toggle click also advances the
+slide = propagation bug → blocking; light-theme `--muted` fails WCAG contrast → important).
+Dry-run confirmed the skill catches all three and lands on **Request Changes**. Watch beat:
+the **approval gate** — it drafts, then waits; nothing posts until approved. **Before the
+talk, run it COLD in the real harness once** — the dry-run was authored in the same
+session, so it's not a fully independent signal. Fallback: the drafted review is saved (see
+below) — read it aloud and move on if the live run stalls.
+
+### Demo 1 fallback review (paste-ready if live fails)
+The full drafted Request-Changes review from the dry-run is reproducible via
+`submit-pr-review 8`; keep a copy in PRIVATE-NOTES or a scratch file the morning of.
+
 ## Time budget
 
-~20 min + Q&A. Only Demo 1 is deep; Demos 2–3 stay fast.
+~20 min + Q&A (50 min slot, stop when done). Only Demo 1 is deep; Demos 2–3 stay fast.
 
 ## TODO before the talk
 
-- [ ] Record `assets/demo-pr-review.gif`
+- [ ] **Run `submit-pr-review` cold against PR #8 in the real harness** (de-risk the live demo)
 - [ ] Record `assets/demo-grill-me.gif` (use a PM/design-flavored plan)
 - [ ] GitHub Pages URLs for Demo 3: ________________________________________
 - [ ] Confirm repo link for the chat (real internal repo/PR — see PRIVATE-NOTES.md, git-ignored)

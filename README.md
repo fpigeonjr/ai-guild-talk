@@ -29,7 +29,7 @@ Slide position is stored in the URL hash, so refresh keeps your place.
 
 | File | Slide | What to capture |
 |---|---|---|
-| `assets/demo-pr-review.gif` | Demo 1 | Diff → run skill → formatted PR review request, ready to paste (~15–20s) |
+| _(live demo)_ | Demo 1 | Run `submit-pr-review` against PR #8 live — no gif; see TALK-NOTES for the fallback review |
 | `assets/demo-grill-me.gif` | Demo 2 | Fuzzy plan → one sharp question at a time → tighter plan (~15s) |
 | _(live site)_ | Demo 3 | Open an existing GitHub Pages lesson in a browser tab |
 
