@@ -78,7 +78,7 @@ it. So the barrier isn't skill, it's picking the one task."
 Credit line on the opening slide, linking https://github.com/mattpocock/skills
 ("Skills For Real Engineers"). His philosophy — *small, easy to adapt, composable,
 make them your own* — is the direct inspiration for this repo and reinforces the talk's
-north star (the Monday CTA is literally "make one your own"). Keep it on slide 1 only,
+north star (the homework CTA is literally "make one your own"). Keep it on slide 1 only,
 not the definition slide, so it credits without derailing the teaching flow.
 
 ## References — on the Q&A slide, not slide 2
@@ -108,7 +108,7 @@ is a named field there). On the Q&A slide: agentskills.io = the full spec, Anthr
 - **Close:** the *earned* reframe — "none of these made me faster; they removed the
   friction" — lands only after they've watched it happen three times. Then the CTA.
 
-## Call to action (do-it-Monday)
+## Call to action (homework assignment)
 
 > Pick one thing you retype every week. Write down how you'd tell a new hire to do it.
 > Save it as a `.md` file. That's a skill.
