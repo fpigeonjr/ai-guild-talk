@@ -1,6 +1,6 @@
-# AI Guild Talk — Shipping with AI Skills
+# Steal This Skill — A Gentle Introduction to Agent Skills
 
-Static HTML slide deck for the Flexion AI Guild talk (July 23).
+Static HTML slide deck for the Flexion AI Guild talk (July 23). Live: https://fpigeonjr.github.io/ai-guild-talk/
 
 ## Present
 
