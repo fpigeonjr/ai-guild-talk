@@ -33,10 +33,21 @@ with a non-dev skill so the tail sees themselves. Cap the body at three specimen
 
 ## The four-part anatomy (taught once, in Demo 1)
 
-1. **Description** — WHEN (the trigger the agent reads)
+1. **Description** — WHEN + WHAT (the trigger the agent reads)
 2. **Instructions** — HOW (step-by-step, the way you'd do it)
 3. **Format** — SHAPE (what the output looks like)
 4. **Guardrails** — SAFETY (rules that keep it on the rails)
+
+### Spec alignment (Anthropic Agent Skills)
+
+Checked against platform.claude.com Agent Skills → "Skill structure." The canonical
+spec is: frontmatter (`name` + `description`) + `## Instructions` + `## Examples`, where
+**`description` must include both *what* it does and *when* Claude should use it.**
+So slide 3's Description card is labeled **WHEN + WHAT** to match the spec exactly.
+**Format** and **Guardrails** are *not* named spec fields — they're practitioner
+conventions (present in the real `submit-pr-review` skill). Slide 3 says this outright:
+"description + instructions are the spec; format & guardrails are conventions that make
+skills reliable." This keeps a spec-reader nodding while still teaching the practical anatomy.
 
 ## The three demos — three distinct jobs, decreasing depth
 
