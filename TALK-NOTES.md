@@ -53,6 +53,14 @@ Placed in the close, not the body. It's not a specimen to admire; it's the on-ra
 "you don't even write the file by hand — there's a skill that interviews you and writes
 it. So the barrier isn't skill, it's picking the one task."
 
+## Homage — Matt Pocock
+
+Credit line on the opening slide, linking https://github.com/mattpocock/skills
+("Skills For Real Engineers"). His philosophy — *small, easy to adapt, composable,
+make them your own* — is the direct inspiration for this repo and reinforces the talk's
+north star (the Monday CTA is literally "make one your own"). Keep it on slide 1 only,
+not the definition slide, so it credits without derailing the teaching flow.
+
 ## Emotional arc
 
 - **Open:** social proof + promise ("teammates adopted it in two weeks; by the end

@@ -62,6 +62,10 @@
   li .muted { color: var(--muted); }
 
   .meta { color: var(--muted); font-size: .95rem; margin-top: 3rem; line-height: 1.8; }
+  .homage { margin-top: 2.2rem; font-size: 1rem; color: var(--ink); border-left: 3px solid var(--accent); padding-left: 1rem; max-width: 46ch; line-height: 1.5; }
+  .homage a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  .homage a:hover { text-decoration: underline; }
+  .homage .muted { color: var(--muted); font-style: italic; }
 
   .anatomy { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin-top: 2rem; max-width: 60vw; }
   .card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 1.4rem 1.6rem; }
@@ -125,7 +129,11 @@
     <h1>Shipping with<br><span class="grad">AI Skills</span></h1>
     <p class="subtitle">Two weeks after I built a workflow for myself, teammates asked to install it in their own setup.</p>
     <p class="subtitle" style="color:var(--ink);font-weight:600;">I'll show you why — and by the end, how you'd build your own.</p>
-    <div class="meta">Fred Pigeon · requested by Michael Getz · booked by Matt</div>
+    <div class="homage">
+      Inspired by <a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">Matt Pocock's <em>Skills For Real Engineers</em></a>
+      — <span class="muted">“small, easy to adapt, composable.”</span>
+    </div>
+    <div class="meta">Frank Pigeon</div>
   </section>
 
   <!-- 2. WHAT A SKILL IS -->
