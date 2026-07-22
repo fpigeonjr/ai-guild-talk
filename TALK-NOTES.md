@@ -134,6 +134,15 @@ below) — read it aloud and move on if the live run stalls.
 The full drafted Request-Changes review from the dry-run is reproducible via
 `submit-pr-review 8`; keep a copy in PRIVATE-NOTES or a scratch file the morning of.
 
+**Demo 2 is also LIVE (slide 9).** Origin story: "I met with the UX team last week — they
+wanted a theme picker, but we never got to specifics." There is deliberately NO theme issue
+in the repo (deleted #2; its spec is stashed in PRIVATE-NOTES). On stage, run `grill-me` on
+the fuzzy theme-picker ask; it asks one question at a time until the ask has edges (which
+themes, switcher behavior, persistence), then file the resulting issue. TODO: decide whether
+to file it with `to-issues` (fully redemptive — both skills on stage) or a quick
+`gh issue create`. After grilling, optionally compare what we derived vs. the stashed old #2.
+Fallback if grilling stalls: talk through the branches from the stashed #2 spec.
+
 ## Time budget
 
 ~20 min + Q&A (50 min slot, stop when done). Only Demo 1 is deep; Demos 2–3 stay fast.
