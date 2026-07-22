@@ -138,9 +138,19 @@ The full drafted Request-Changes review from the dry-run is reproducible via
 wanted a theme picker, but we never got to specifics." There is deliberately NO theme issue
 in the repo (deleted #2; its spec is stashed in PRIVATE-NOTES). On stage, run `grill-me` on
 the fuzzy theme-picker ask; it asks one question at a time until the ask has edges (which
-themes, switcher behavior, persistence), then file the resulting issue. TODO: decide whether
-to file it with `to-issues` (fully redemptive — both skills on stage) or a quick
-`gh issue create`. After grilling, optionally compare what we derived vs. the stashed old #2.
+themes, switcher behavior, persistence). Then chain into `to-issues` to slice the sharpened
+plan into grabbable tickets. DECIDED: use `to-issues` (dogfood both skills on stage), not a
+quick `gh issue create`.
+
+Gotchas to narrate / expect with `to-issues`:
+- It DECOMPOSES into multiple tracer-bullet slices — expect ~2–3 issues (e.g. warm theme,
+  high-contrast theme, switcher+persistence), NOT a single recreated #2. That's the point:
+  grill-me sharpens → to-issues slices.
+- Step 4 is a QUIZ gate: it shows the numbered breakdown and iterates until I approve before
+  publishing anything. Narrate this as the SECOND human-in-the-loop gate (after
+  submit-pr-review's approval gate). Callback to slide 2's guardrail beat.
+- No domain glossary / ADRs in this repo, so it'll skip those; may briefly explore the repo.
+After publishing, optionally compare what we derived vs. the stashed old #2.
 Fallback if grilling stalls: talk through the branches from the stashed #2 spec.
 
 ## Time budget
