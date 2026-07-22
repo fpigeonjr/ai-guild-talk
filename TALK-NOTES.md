@@ -53,6 +53,15 @@ skills reliable." This keeps a spec-reader nodding while still teaching the prac
 
 1. **`submit-pr-review` — DEEP (the anatomy specimen).** The hero. Raw SKILL.md, name
    the four parts, tell the teammate-adoption story. This is where the *pattern* is taught.
+
+   **The real backstory (slide 4):** In my GSA environment we don't have automated
+   Copilot PR reviews — so I set out to build my own. Then I found Matt Pocock's skills
+   repo, took his, made it mine. Two weeks later my teammates got envious and wanted to
+   see how I made it + how to use it. The recursive punchline: I stole-and-adapted exactly
+   like I'm telling the audience to — then it happened *to* me. Frame the constraint as
+   "we don't have access to automated Copilot reviews in my environment" — not a complaint
+   about GSA, not a policy workaround. The "output isn't perfect, ready to edit and send"
+   expectation-setting line moved to the gif slide (slide 5).
 2. **`grill-me` — GENERALIZE (same skeleton, zero code).** Fast. Don't re-teach anatomy.
    Meta-beat: *this talk was grilled into shape by this skill.* Proves the pattern travels.
 3. **`teach` — CEILING (how far it scales).** Show real GitHub Pages output, not the file.
